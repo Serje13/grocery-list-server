@@ -1,0 +1,51 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+
+model User {
+  id          Int     @id @default(autoincrement())
+  email       String  
+  hash        String
+  hashedRt    String?
+  groseries Grocery[]
+
+  @@map("users")
+  @@unique([email])
+  @@index([id, email])
+}
+
+model Grocery {
+  id        Int       @id @default(autoincrement())
+  title     String    
+  status    Boolean   @default(true)
+  priority  Int
+  userId    Int
+  owner     User     @relation(fields: [userId], references: [id])
+  changes   Update[]
+
+  @@map("groseries")
+  @@unique([title])
+  @@index([id])
+}
+
+model Update {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  groceryId  Int
+  owner     Grocery  @relation(fields: [groceryId], references: [id])
+  @@map("changes")
+
+  @@index([createdAt(sort: Desc)])
+}
