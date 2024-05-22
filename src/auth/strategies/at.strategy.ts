@@ -6,14 +6,14 @@ import { JwtPayload } from '../types';
 
 @Injectable()
 export class AtStrategy extends PassportStrategy(Strategy, 'jwt') {
-  constructor(config: ConfigService) {
-    super({
-      jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
-      secretOrKey: config.get<string>('AT_SECRET'),
-    });
-  }
+    constructor(config: ConfigService) {
+        super({
+            jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
+            secretOrKey: config.get<string>('AT_SECRET'),
+        });
+    }
 
-  validate(payload: JwtPayload) {
-    return payload;
-  }
+    validate(payload: JwtPayload) {
+        return payload;
+    }
 }

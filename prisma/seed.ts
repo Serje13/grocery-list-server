@@ -11,7 +11,7 @@ const userData: Prisma.UserCreateInput[] = [
         create: [
             {
                 title:"bread",
-                status: true,
+                status: 1,
                 priority: 1,
                 changes: {
                     create:[
@@ -29,7 +29,7 @@ const userData: Prisma.UserCreateInput[] = [
             },
             {
                 title:"sugar",
-                status: true,
+                status: 1,
                 priority: 2,
                 changes: {
                     create:[
@@ -42,7 +42,7 @@ const userData: Prisma.UserCreateInput[] = [
             },
             {
                 title:"meat",
-                status: true,
+                status: 1,
                 priority: 3,
                 changes: {
                     create:[

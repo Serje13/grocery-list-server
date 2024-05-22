@@ -1,5 +1,5 @@
 
-import { IsNotEmpty, IsString, IsBoolean, IsInt } from 'class-validator';
+import { IsNotEmpty, IsString, IsInt } from 'class-validator';
 
 
 export class CreateGroceryDto {
@@ -8,10 +8,14 @@ export class CreateGroceryDto {
     title: string;
 
 	@IsNotEmpty()
-	@IsBoolean()
-  	status:boolean;
+	@IsInt()
+  	status:number;
 
 	@IsNotEmpty()
 	@IsInt()
   	priority: number;
+
+	@IsNotEmpty()
+	@IsInt()
+	userId: number;
 }
